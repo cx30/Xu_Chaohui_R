@@ -1,0 +1,159 @@
+```{r}
+#Problem 1
+#Create	the	vectors:
+#a) (1,2,3,...,19,20)
+c(1:20)
+#b) (20,19,...,2,1)
+c(20:1)
+#c) (1,2,3,...,19,20,19,18,...,2,1)
+c(1:20, 19:1)
+#d) (4,	6,	3)	and	assign	it	to	the	name tmp
+tmp <- c(4, 6, 3)
+#e) (4,6,3,	4,6,3,...,4,6,3)	where	there	are	10	occurrences	of	4.	
+rep(tmp, 10) #rep(x,...) will replicate the value in x where 10 is number of times x being 
+            #replicated.
+#f) (4,6,3,	4,6,3,...,4,6,3,4)	where	there	are	11	occurrences	of	4,	10	
+#occurrences	of	6	and	10	occurrences	of	3.		
+c(rep(tmp,10),4)  #This will give 10 occurence of (4,6,3) ending with an extra occurence of 4
+#g) (4,4,...,4,	6,6,...,6,	3,3,...,3)	where	there	are	10	occurrences	of	4,	20	
+#occurrences	of	6	and	30	occurrences	of	3
+c(rep(4,10),rep(6,20),rep(3,30)) #This will give 10	occurrences	of	4,	20	
+#occurrences	of	6	and	30	occurrences	of	3
+
+```
+
+```{r}
+#Problem 2
+#Create	a	vector	of the	values	of (e^x)*cos(x) at x = 3,3.1,3.2,...,5.9,6
+
+x = seq(3, 6, by = .1) #set the domain vector x = (3,3.1,3.2,3.3,...,5.9,6) 
+exp(x)*cos(x) #this will compute exp(x)*cos(x) at each x and give a new vector
+
+```
+
+```{r}
+#Problem 3 Create the following	vectors:
+#a) (0.1^3*0.2^1, 0.1^6*0.2^4, 0.1^9*0.2^7,...0.1^36*0.2^34)
+m = seq(3, 36, by=3) #this will give (3,6,9,12,...,33,36)
+n = seq(1, 34, by = 3) #this will give (1,4,7,...,31,34)
+c((0.1^m)*(0.2^n)) #this will give a new vector for each m and n
+
+#b) (2, 2^2/2, 2^3/3,...,2^25/25)
+m = c(1:25) #ceate a vector (1,2,3,4,...,24,25)
+c((2^m)/m) #compute in terms of each m and return the new vector
+
+```
+
+```{r}
+#Problem 4 
+#a) 
+i = c(10:100)
+sum(i^3 + 4*i^2) #calculate the summation of i^3 + 4*i^2 for i = 10,11,12,13,...,98,99,100
+
+#b)
+i = c(1:25)
+sum(2^i/i + 3^i/i^2) #calculate the summation of 2^i/i + 3^i/i^2 for i = 1,2,3,...,25
+
+```
+
+```{r}
+#Problem 5 Use the	function	paste	to	create	the	following	character	vectors	of	
+#length	30:
+#a) ("label	1",	"label	2",	.....,	"label	30"). Note	that	there	is	a	single	space	
+#between	label	and	the	number	following.
+x = c(1:30) 
+paste("lable", x) #this will create a character vector 
+                  #("label	1",	"label	2",	.....,	"label	30")
+#b) ("fn1",	"fn2",	...,	"fn30").	In this	case,	there	is	no	space	between	fn	
+#and	the	number	following.
+x = c(1:30)
+paste("fn", x, sep = "") #sep makes sure there is no space between character string
+```
+
+```{r}
+#Problem 6 
+#Execute the	following	lines	which	create	two	vectors	of	random	integers
+#which	are	chosen	with	replacement	from	the	integers	0,	1,	.	.	.	,	999.	
+#Both	vectors	have	length	250.
+#set.seed(50)
+#xVec <- sample(0:999, 250, replace=T)
+#yVec <- sample(0:999, 250, replace=T)
+#Suppose x = (x1,x2,...,xn) denotes the vector xVec and y = (y1,y2,...,yn)
+#denotes the vector yVec.
+
+set.seed(50) #generate random numbers
+xVec<-sample(0:999, 250, replace = T)  
+yVec<-sample(0:999, 250, replace = T)
+
+#a) Create	the	vector (y2-x1,...,yn-x(n-1))
+yVec[-1] - xVec[-250] #remove the first element in yVec, and remove the 250th element in xVex. 
+                      #substract them to get new vectors
+#b) Create the vector (sin(y1)/cos(x2),sin(y2)/cos(x3),...,sin(y(n-1))/cos(xn))
+sin(yVec[-250])/cos(xVec[-1]) #recreate yVec by truncating the last item in yVec and first item
+                              #in xVec and calculate the result
+
+#c) Create	the	vector (x1+2x2-x3,...,x(n-2)+2x(n-1)-xn)
+xVec[-c(249,250)]+ 2 * xVec[-c(1,250)] - xVec[-c(1,2)] 
+
+#d)
+sum(exp(-xVec[-1]) / (xVec[-250] + 10)) #sum returns the sum of all values present in this 
+                                      #arguments
+```
+
+```{r}
+#Problem 7
+#a) Pick	out	the	values	in	yVec	which	are	>	600.
+yVec[yVec > 600] #this will return the values in yVec which are >600
+
+#b) What	are	the	index	positions	in	yVec	of	the	values	which	are	>	600?
+which(yVec > 600) #this will return the index position in yVec of the values which are >600
+
+#c)What	are	the	values	in	xVec	which	correspond	to	the	values	in	yVec	
+#which	are	>	600?	(By	correspond,	we	mean	at the	same	index	positions.)
+xVec[yVec > 600] #this will return the values in xVec which correspond to the values in yVec
+                  #which are >600
+
+#d) Create	the vector	(|x1-x(mean)|^1/2,|x2-x(mean)|^1/2,...,|xn-x(mean)|^1/2 )
+#where x(mean) denotes	the	mean	of	the	vector x	=	(x1,x2,...,xn)
+sqrt(abs(xVec - sum(xVec)/250)) #This creates a new vector |x1 - x(mean)|^(1/2), 
+                                #|x2 - x(mean)|^(1/2),...,|xn - x(mean)|^(1/2)
+                                #where x(mean) denotes the mean of xVec
+
+#e) How	many	values	in	yVec	are	within	200	of	the	maximum	value	of	
+#the	terms	in	yVec?
+sum(yVec > max(yVec) - 200) #This will return the number of values that are within 200 of 
+                            #the maximum value of the terms in yVec
+
+#f) How	many	numbers	in	xVec	are	divisible	by	2?	(Note	that	the	mod	
+#operator	is	denoted	%%.)
+sum(xVec%%2 == 0)  #This will give the number of xVec that is divisible by 2
+
+#g) Sort	the	numbers	in	the	vector	xVec	in	the	order	of	increasing	values	
+#in	yVec.
+xVec[order(yVec)] #this will sort	the	numbers	in	the	vector	xVec	in	the	order
+#	of	increasing	values	in	yVec.
+#h) pick	out	the	elements	in	yVec	at	index	positions	1,4,7,10,13,…
+yVec[c(T,F,F)] #pick out the elements in yVec at index postion 1,4,7,10,13,...
+```
+
+```{r}
+#Problem 8 
+#By	using	the	function	cumprod	or	otherwise,	calculate:
+#1+ 2/3 + (2*4)/(3*5) + (2*4*6)/(3*5*7) + ... + (2*4*...*38)/(3*5*...*39)
+1 + sum(cumprod(seq(2,38,by=2)/seq(3,39,by=2))) #cumprod() will give cumulative products. 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
