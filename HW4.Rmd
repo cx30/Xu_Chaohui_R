@@ -115,9 +115,7 @@ xVec[yVec > 600] #this will return the values in xVec which correspond to the va
 
 #d) Create	the vector	(|x1-x(mean)|^1/2,|x2-x(mean)|^1/2,...,|xn-x(mean)|^1/2 )
 #where x(mean) denotes	the	mean	of	the	vector x	=	(x1,x2,...,xn)
-sqrt(abs(xVec - sum(xVec)/250)) #This creates a new vector |x1 - x(mean)|^(1/2), 
-                                #|x2 - x(mean)|^(1/2),...,|xn - x(mean)|^(1/2)
-                                #where x(mean) denotes the mean of xVec
+sqrt(abs(xVec - sum(xVec)/250)) #abs() gives the absolute value
 
 #e) How	many	values	in	yVec	are	within	200	of	the	maximum	value	of	
 #the	terms	in	yVec?
