@@ -1,32 +1,32 @@
 library('ggplot2') #install ggplot 2 package
 
-#Question 1 Print	to	the	console	all	methods	and	attributes	associates	with	a	dataframe.	
-#Write	code	to	determine	the	number	of	columns	in	a	dataframe
+#Question 1 Print to the console all methods and attributes associates with a dataframe.	
+#Write code to determine the number of columns in a dataframe
 methods(class=data.frame) #print to the console all methods associated with a dataframe
 
 attributes(diamonds) #print to the console all attributes associated with a dataframe
 
 ncol(diamonds) #number of columns in the data frame
 
-#Question 2 Write	code	to	determine	how	many	rows	are	in	a	dataframe
+#Question 2 Write code to determine how	many rows are in a dataframe
 nrow(diamonds) #number of rows in the data frame
 
-#Question 3 Write	code	to	extract	the	column	names	from	a	dataframe	and print	the	
-#names	of	the	columns (one	per	line) to	the	console.
+#Question 3 Write code to extract the column names from	a dataframe	and print the	
+#names of the columns (one per line) to	the	console.
 cat(colnames(diamonds), sep = '\n') #colnames() extracts the column names and cat() prints the
 #name of the columns (one per line)
 
-#Question 4 Write	code	to	determine	the	type	of	each	column	(numeric,	factor,	logical,	
-# etc.).	Print	the	type	of	each	column	to	the	console
+#Question 4 Write code to determine	the	type of	each column (numeric, factor, logical,	
+# etc.). Print the type of each	column to the console
 type = sapply(diamonds, class) #returns the type of each column
 
-#Question 5 Write	code	that	will	loop	through	any	dataframe	and	calculate	the	mean	of	
-#every	numeric	column. Label	the	output	with	the	name	of	the	column.
-sapply(diamonds,mean)[which(type=="numeric")] #loop	through	the	dataframe	and	calculate	the	mean	of	
-#every	numeric	column
+#Question 5 Write code that will loop through any dataframe and calculate the mean of	
+#every numeric column. Label the output with the name of the column.
+sapply(diamonds,mean)[which(type=="numeric")] #loop	through	the	dataframe and calculate	the	mean of	
+#every numeric column
 
-#Question 6 Write	code	that	will	loop	through	any	dataframe	and	create	a	frequency	table	
-#for	every	factor column.	Label	the	output	with	the	name	of	the	column.
+#Question 6 Write code that will loop through any dataframe	and create a frequency table	
+#for every factor column. Label the	output with	the	name of the	column.
 #Solution 1:
 Factor = diamonds[,seq(2,4,by = 1)] #extract the factor columns
 summary(Factor) #create a frequency table for every factor column
@@ -35,19 +35,19 @@ summary(Filter(is.factor,diamonds)) #loop through the dataframe and create a fre
                                     #for the factor column
 
 #Question 7 
-#a) Write	code	that	will	loop	through	any	dataframe	and	determine	the	number	
-#of	rows	containing	NA	(missing	value)	in	each	column.
-lapply(as.data.frame(lapply(diamonds,is.na)),sum) #loop	through	any	dataframe	and	determine	the	number	
-#of	rows	containing	NA	(missing	value)	in	each	column
-#b) Determine the	percentage	of	rows containing	an	NA in	any	of	the	columns.
+#a) Write code that will loop through any dataframe	and	determine the number	
+#of rows containing NA (missing value) in each column.
+lapply(as.data.frame(lapply(diamonds,is.na)),sum) #loop	through	any dataframe and determine the	number	
+#of rows containing NA (missing value) in each column
+#b) Determine the percentage of rows containing	an NA in any of the columns.
 nrow(diamonds[rowSums(is.na(diamonds))>0,])/nrow(diamonds) #determine the persentage of rows containing an NA
 
 #Question 8
 Pearson_col <- function(mydata) {
-  #This function accepts a data frame as a parameter and returns	a dataframe	
-  #that	contains	each	pair	of	column names	in	the	first	
-  #column	in	a	single	string	separated	by	a	"-", and	their	corresponding	
-  #Pearson	correlation	coefficient	in	the	second	column.
+  #This function accepts a data frame as a parameter and returns a dataframe	
+  #that contains each pair of column names in the first	column
+  #in a single string separated	by a "-", and their corresponding	
+  #Pearson correlation coefficient in the second column.
   # @parameter: a data frame
   # @return the paired names and their correlation coefficient
   type <- sapply(mydata,class) #get the type of all columns
