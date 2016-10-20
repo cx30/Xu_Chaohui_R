@@ -2,8 +2,8 @@ library("ggplot2") #import ggplot2
 library("grid") #import grid package
 data(diamonds)
 
-#Question 2 Create a simple scatter plot of Weight (???Carat???) and Price using Color (the	
-#???Color??? column in the	diamonds dataframe) as a facet. This might the precursor for	
+#Question 2 Create a simple scatter plot of Weight ("Carat") and Price using Color (the	
+#"Color" column in the	diamonds dataframe) as a facet. This might the precursor for	
 #developing	a	model to predict price given some characteristic like weight. Notice that the	
 #relationship is non-linear. If we wanted to build a linear model, this would violate one of the	
 #assumptions.
@@ -11,7 +11,7 @@ layer1 = ggplot(diamonds, aes(carat, price, color = factor(color)))
 dots = layer1 + geom_point() + xlab("Weight") + ylab("Price") + labs(title = "Diamonds - Weight to Price by Color") + theme(plot.title = element_text(color = "blue"))
 #create a scatter plot of Weight ("Carat") and Price using Color (the "Color" column in the diamonds dataframe) as a facet. Moreover, set the title color as blue using theme()
 
-#Question 3 All	Groups: Let???s remove the non-linearity and replot. Think about transforming both price	
+#Question 3 Let's remove the non-linearity and replot. Think about transforming both price	
 #and weight. Given that we are working with dollars (Price); the first transformation we	
 #might try is the natural log. Add the transformed columns to the dataframe and replot.
 cbind(log(diamonds$carat), log(diamonds$price)) #add the transformed columns to the dataframe
@@ -19,7 +19,7 @@ layer2 = ggplot(diamonds, aes(log(carat), log(price), color = factor(color)))
 dots2 = layer2 + geom_point() + xlab("Weight") + ylab("Price") + labs(title = "Diamonds - Weight to Price (Linear)") + theme(plot.title = element_text(colour = "blue"))
 #remove the non-linearity by transforming both price and weight with natural log, and replot.
 
-#Question 4 All Groups: Remove the linear trend (create	a linear model and use the transformed weight	
+#Question 4 Remove the linear trend (create	a linear model and use the transformed weight	
 #on the x-axis and the residuals on the	y-axis). If there is a relationship that can be modeled	
 #with	a linear regression model, then the residuals should be randomly distributed. The	
 #resulting plot visually indicates there is possibly some heteroscedasticity to manage.
