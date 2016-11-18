@@ -1,3 +1,6 @@
+#Overall Comment: Good exercise except for some details. And please do pay attentions to the setting of any dataframe to avoid some errors.
+
+
 library('ggplot2') #install ggplot 2 package
 
 #Question 1 Print to the console all methods and attributes associates with a dataframe.	
@@ -25,6 +28,18 @@ type = sapply(diamonds, class) #returns the type of each column
 sapply(diamonds,mean)[which(type=="numeric")] #loop	through	the	dataframe and calculate	the	mean of	
 #every numeric column
 
+#Comment:It doesn't work with me and I have following output
+#> sapply(diamonds,mean)[which(type=="numeric")]
+#Error in which(type == "numeric") : object 'type' not found
+#In addition: Warning messages:
+#1: In mean.default(X[[i]], ...) :
+#  argument is not numeric or logical: returning NA
+#2: In mean.default(X[[i]], ...) :
+#  argument is not numeric or logical: returning NA
+#3: In mean.default(X[[i]], ...) :
+#  argument is not numeric or logical: returning NA
+#I suggest to select the numeric first or you can write one loop to solve the numeric column selection.
+
 #Question 6 Write code that will loop through any dataframe	and create a frequency table	
 #for every factor column. Label the	output with	the	name of the	column.
 #Solution 1:
@@ -33,6 +48,8 @@ summary(Factor) #create a frequency table for every factor column
 #Solution 2:
 summary(Filter(is.factor,diamonds)) #loop through the dataframe and create a frequency table
                                     #for the factor column
+
+#Comment: Actually the fist solution doesn't work since it must can be extend to any dataframe. Solution one is only suitable for diamonds data.
 
 #Question 7 
 #a) Write code that will loop through any dataframe	and	determine the number	
