@@ -1,3 +1,6 @@
+#Overall Comments: Good start! Practise more to be good format to keep your code clear, efficient and readable.
+
+
 library("ggplot2") #import ggplot2
 library("grid") #import grid package
 data(diamonds)
@@ -10,6 +13,11 @@ data(diamonds)
 layer1 = ggplot(diamonds, aes(carat, price, color = factor(color)))
 dots = layer1 + geom_point() + xlab("Weight") + ylab("Price") + labs(title = "Diamonds - Weight to Price by Color") + theme(plot.title = element_text(color = "blue"))
 #create a scatter plot of Weight ("Carat") and Price using Color (the "Color" column in the diamonds dataframe) as a facet. Moreover, set the title color as blue using theme()
+
+#Comments:It is good to start with layer understanding of ggplot but I suggest one better format for ggplot you may refer
+ggplot(diamonds,aes(carat,price))+geom_point(aes(color=factor(color)))+labs(title="Diamonds-Weight to Price by Color",x='Weight',y='Price')
+#And one more questions for your code is you still need to output the variable you have defined to see the plot. Like you defined your
+#plot with "dots" variable, there is no plot generated, you still need to output the plot. But you didn't lose points here.
 
 #Question 3 Let's remove the non-linearity and replot. Think about transforming both price	
 #and weight. Given that we are working with dollars (Price); the first transformation we	
